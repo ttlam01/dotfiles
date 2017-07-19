@@ -11,3 +11,4 @@ alias help="man"
 #alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 #alias mvim="/Applications/MacVim.app/contents/MacOS/Vim -g -f"
 alias mvim="open -a MacVim"
+alias config='/usr/bin/git --git-dir=/Users/tunglam/.dotfiles/ --work-tree=/Users/tunglam'
