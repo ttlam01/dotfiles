@@ -31,7 +31,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-scripts/a.vim'
 Plugin 'duff/vim-trailing-whitespace'
-
+Plugin 'jalvesaq/Nvim-R'
 if v:version > 705
         Plugin 'valloric/youcompleteme' "Code completion
 endif
@@ -78,9 +78,11 @@ set mouse=a
 set belloff=all
 
 " Set up tabs
-set tabstop=4
-set softtabstop=4
-set expandtab
+" set tabstop=4
+" set softtabstop=4
+" set expandtab
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+
 
 "set nobackup
 "set noswapfile
