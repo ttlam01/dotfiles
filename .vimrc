@@ -32,9 +32,17 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-scripts/a.vim'
 Plugin 'duff/vim-trailing-whitespace'
 Plugin 'jalvesaq/Nvim-R'
-if v:version > 705
-        Plugin 'valloric/youcompleteme' "Code completion
+
+
+if has("gui_running")
+    Plugin 'valloric/youcompleteme' "Code completion for macvim only
 endif
+
+
+" Snippets
+Plugin 'SirVer/ultisnips' " Track the engine.
+Plugin 'honza/vim-snippets' " Snippets are separated from the engine. Add this if you want them:
+
 
 " ----- Working with Git ----------------------------------------------
 Plugin 'airblade/vim-gitgutter'
@@ -248,3 +256,13 @@ let g:ycm_min_num_of_chars_for_completion=1
 let g:ycm_cache_omnifunc=0
 "" complete syntax keywords
 let g:ycm_seed_identifiers_with_syntax=1
+
+" Ultisnips settings
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+
+"-------vimtex settings-----------------
+let g:vimtex_view_method = 'skim'
