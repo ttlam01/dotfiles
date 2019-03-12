@@ -5,6 +5,8 @@ export EDITOR="/usr/local/bin/mate -w"
 #export EDITOR="open -a MacVim"
 source ~/.git-completion.bash
 
+export HISTIGNORE="brew upgrade:brew cleanup:clear:df*:exit:logout:neofetch:pwd:vim"
+
 #export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 alias matlabcmd="clear && /Applications/MATLAB_R2017a.app/bin/matlab -nojvm -nodisplay -nosplash"
