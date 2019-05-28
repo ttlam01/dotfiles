@@ -49,7 +49,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 
 " ----- Other text editing features -----------------------------------
-Plugin 'Raimondi/delimitMate'
+"Plugin 'Raimondi/delimitMate'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'bling/vim-bufferline'
 
 " ----- Latex features ------------------------------------------------
@@ -105,16 +106,15 @@ set wildmenu        " visual autocomplete for command menu"
 set lazyredraw      " redraw only when we need to"
 
 set autochdir       " Set working directory to the current file
-let macvim_skip_colorscheme=1
 
 "=== folding ===
 "Uncomment the following lines for folding
-"set foldmethod=indent   " fold based on indent level
-"set foldnestmax=10      " max 10 depth
-"set nofoldenable          " don't fold files by default on open
-"nnoremap <space><space> za
-"set foldlevel=2
-"set foldlevelstart=10   " start with fold level of 1
+set foldmethod=syntax   " fold based on indent level
+set foldnestmax=10      " max 10 depth
+set nofoldenable          " don't fold files by default on open
+nnoremap <space><space> za
+set foldlevel=2
+set foldlevelstart=10   " start with fold level of 1
 
 " We need this for plugins like Syntastic and vim-gitgutter which put symbols
 " in the sign column.
@@ -138,10 +138,12 @@ set background=dark
 
 " Uncomment the next line if your terminal is not configured for
 " solarize/gruvbox
+colorscheme solarized
 set t_Co=256
 let g:solarized_termcolors=256
 let g:solarized_visibility='high'
-let g:solarized_termtrans = 0
+let g:solarized_termtrans = 1
+let macvim_skip_colorscheme=1
 " Uncomment the next lines if use gruvbox
 "let g:gruvbox_termcolors=256
 
@@ -150,7 +152,6 @@ let g:molokai_original = 1
 let g:rehash256 = 1
 
 " Set the colorscheme
-colorscheme solarized
 "colorscheme gruvbox "gotham256
 "colorscheme molokai
 
@@ -222,14 +223,14 @@ let g:airline#extensions#hunks#non_zero_only = 1
 
 
 " ----- Raimondi/delimitMate settings -----
-let delimitMate_expand_cr = 1
-augroup mydelimitMate
-  au!
-  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
-  au FileType tex let b:delimitMate_quotes = ""
-  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
-  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
-augroup END
+"let delimitMate_expand_cr = 1
+"augroup mydelimitMate
+"  au!
+"  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
+"  au FileType tex let b:delimitMate_quotes = ""
+"  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
+"  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
+"augroup END
 
 " ----- jez/vim-superman settings -----
 " better man page support

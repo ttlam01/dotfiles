@@ -5,7 +5,7 @@ export EDITOR="/usr/local/bin/mate -w"
 #export EDITOR="open -a MacVim"
 source ~/.git-completion.bash
 
-export HISTIGNORE="brew upgrade:brew cleanup:clear:df*:exit:logout:neofetch:pwd:vim"
+export HISTIGNORE="brew upgrade:brew cleanup:clear:df*:exit:logout:neofetch:pwd:vim:nnn"
 
 #export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
