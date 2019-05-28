@@ -79,7 +79,6 @@ set showcmd
 set incsearch
 set hlsearch
 
-syntax enable
 
 set mouse=a
 
@@ -138,6 +137,7 @@ set background=dark
 
 " Uncomment the next line if your terminal is not configured for
 " solarize/gruvbox
+syntax enable
 colorscheme solarized
 set t_Co=256
 let g:solarized_termcolors=256
