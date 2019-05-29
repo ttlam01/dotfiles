@@ -142,7 +142,7 @@ colorscheme solarized
 set t_Co=256
 let g:solarized_termcolors=256
 let g:solarized_visibility='high'
-let g:solarized_termtrans = 1
+let g:solarized_termtrans = 1 "to keep MacOS terminal display color correctly
 let macvim_skip_colorscheme=1
 " Uncomment the next lines if use gruvbox
 "let g:gruvbox_termcolors=256
