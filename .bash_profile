@@ -1,13 +1,16 @@
-#export PATH="/usr/local/sbin:$PATH"
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+PATH=/usr/bin:/bin:/usr/sbin:/sbin
+export PATH
+export GEM_HOME=$HOME/.gem
+export PATH=/usr/local/bin:/usr/local/sbin:/opt/X11/bin:/Library/TeX/texbin:$GEM_HOME/bin:$PATH
 
-export EDITOR="/usr/local/bin/mate -w"
-#export EDITOR="open -a MacVim"
+
+#export EDITOR="/usr/local/bin/mate -w"
+export EDITOR="/Applications/MacVim.app/Contents/bin/mvim"
 source ~/.git-completion.bash
 
-export HISTIGNORE="brew upgrade:brew cleanup:clear:df*:exit:logout:neofetch:pwd:vim:nnn"
+export HISTIGNORE="brew upgrade:brew cleanup:clear:df*:exit:logout:neofetch:pwd:vim:nnn:istats"
 
-#export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH=/usr/local/opt/python/libexec/bin:$PATH
 
 alias matlabcmd="clear && /Applications/MATLAB_R2017a.app/bin/matlab -nojvm -nodisplay -nosplash"
 alias help="man"
