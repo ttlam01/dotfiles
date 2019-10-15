@@ -22,8 +22,8 @@ Plugin 'vim-airline/vim-airline-themes'
 "Plugin 'flazz/vim-colorschemes'
 
 " ----- Vim as a programmer's text editor -----------------------------
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
@@ -34,14 +34,14 @@ Plugin 'duff/vim-trailing-whitespace'
 Plugin 'jalvesaq/Nvim-R'
 
 
-if has("gui_running")
+if has('gui_running')
     Plugin 'valloric/youcompleteme' "Code completion for macvim only
 endif
 
 
 " Snippets
 Plugin 'SirVer/ultisnips' " Track the engine.
-Plugin 'honza/vim-snippets' " Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets' " Snippets are separated from the engine. Add this if you want them. To edit/customize snippets, open a tex file and type :UltiSnipsEdit
 
 
 " ----- Working with Git ----------------------------------------------
@@ -182,13 +182,13 @@ let g:airline_theme= 'jellybeans'
 
 " ----- jistr/vim-nerdtree-tabs -----
 " Open/close NERDTree Tabs with \t
-nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
-nnoremap <leader>ff :NERDTreeFocusToggle<CR>
-" To have NERDTree always open on startup
-let g:nerdtree_tabs_open_on_console_startup = 0
-let g:nerdtree_tabs_open_on_gui_startup = 0
-let g:nerdtree_tabs_smart_startup_focus = 2 "Always focus on file window after startup
-let g:NERDTreeChDirMode=2 "follow NERDTree's current directory
+"nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
+"nnoremap <leader>ff :NERDTreeFocusToggle<CR>
+"" To have NERDTree always open on startup
+"let g:nerdtree_tabs_open_on_console_startup = 0
+"let g:nerdtree_tabs_open_on_gui_startup = 0
+"let g:nerdtree_tabs_smart_startup_focus = 2 "Always focus on file window after startup
+"let g:NERDTreeChDirMode=2 "follow NERDTree's current directory
 
 
 " ----- scrooloose/syntastic settings -----
@@ -244,7 +244,7 @@ let g:ycm_auto_trigger=0
 nnoremap <leader>y :let g:ycm_auto_trigger=1<CR>                " turn off YCM
 nnoremap <leader>yy :let g:ycm_auto_trigger=0<CR>                " turn on YCM
 "" turn on completion in comments
-let g:ycm_complete_in_comments=1
+let g:ycm_complete_in_comments=1 
 "" load ycm conf by default
 let g:ycm_confirm_extra_conf=0
 "" turn on tag completion
@@ -257,13 +257,17 @@ let g:ycm_min_num_of_chars_for_completion=1
 let g:ycm_cache_omnifunc=0
 "" complete syntax keywords
 let g:ycm_seed_identifiers_with_syntax=1
+let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=[]
 
 " Ultisnips settings
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "mySnippets"]
+let g:UltiSnipsExpandTrigger="<TAB>"
+let g:UltiSnipsJumpForwardTrigger="<TAB>"
+let g:UltiSnipsJumpBackwardTrigger="<s-TAB>"
 
 
 "-------vimtex settings-----------------
+let g:tex_flavor='latex' 
 let g:vimtex_view_method = 'skim'
