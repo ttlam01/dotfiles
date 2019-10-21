@@ -84,7 +84,9 @@ set showcmd
 set incsearch
 set hlsearch
 
-
+"split
+set splitright
+"set splitbelow
 
 set mouse=a
 
