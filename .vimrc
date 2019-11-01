@@ -24,14 +24,14 @@ Plugin 'vim-airline/vim-airline-themes'
 " ----- Vim as a programmer's text editor -----------------------------
 "Plugin 'scrooloose/nerdtree'
 "Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'vim-syntastic/syntastic'
+Plugin 'vim-syntastic/syntastic' "checking syntax
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
 Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-scripts/a.vim'
 Plugin 'duff/vim-trailing-whitespace'
-Plugin 'jalvesaq/Nvim-R'
+Plugin 'jalvesaq/Nvim-R' "vim IDE for R
 
 
 if has('gui_running')
@@ -243,8 +243,9 @@ let g:airline#extensions#hunks#non_zero_only = 1
 " ----- jez/vim-superman settings -----
 " better man page support
 noremap K :SuperMan <cword><CR>
+runtime! ftplugin/man.vim "man package distributed within vim
 
-" --------YCM settigs ----------------
+"--------YCM settigs ----------------
 " Toggle YCM
 "let g:ycm_semantic_completion_toggle = '<C-F>'
 let g:ycm_auto_trigger=0
