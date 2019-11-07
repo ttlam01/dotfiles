@@ -1,8 +1,9 @@
-PATH=/usr/bin:/bin:/usr/sbin:/sbin
+PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin
 export PATH
 export PATH=$PATH:/usr/local/opt/python/libexec/bin
+export PATH=$PATH:/opt/X11/bin:/Library/TeX/texbin
 export GEM_HOME=$HOME/.gem
-export PATH=$PATH:/usr/local/bin:/usr/local/sbin:/opt/X11/bin:/Library/TeX/texbin:$GEM_HOME/bin
+export PATH=$PATH:$GEM_HOME/bin
 export PATH=$PATH:/usr/local/opt/ruby/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.3.0/bin
 export PATH=$PATH:$HOME/.rvm/bin
