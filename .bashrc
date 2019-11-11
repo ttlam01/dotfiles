@@ -12,6 +12,8 @@ export PATH=$PATH:$HOME/.rvm/bin
 export EDITOR="/Applications/MacVim.app/Contents/bin/mvim -g"
 source ~/.git-completion.bash
 
+
+export HISTTIMEFORMAT="%a %b %d %T %Z %Y %t"
 export HISTIGNORE="brew upgrade:brew cleanup:clear:df*:exit:logout:neofetch:pwd:vim:nnn:istats:open:vimtutor"
 
 
