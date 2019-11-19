@@ -115,6 +115,7 @@ au Filetype python set
     \ set textwidth=79
     \ set expandtab
     \ set autoindent
+    \ set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
     \ set fileformat=unix
 
 
