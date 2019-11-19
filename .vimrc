@@ -73,6 +73,9 @@ filetype plugin indent on
 
 " --- General settings ---
 set backspace=indent,eol,start
+set encoding=utf-8
+
+" --- line number ---
 set ruler
 set number relativenumber
 augroup numbertoggle
@@ -88,16 +91,31 @@ set hlsearch
 set splitright
 "set splitbelow
 
-set mouse=a
+set mouse+=a
 
 " Silent!
 set belloff=all
 
-" Set up tabs
-" set tabstop=4
-" set softtabstop=4
-" set expandtab
-set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+" Setup tabs
+"set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+set autoindent
+set smartindent
+set cindent
+
+"au BufNewFile,BufRead *.py
+au Filetype python set
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
 
 
 "set nobackup

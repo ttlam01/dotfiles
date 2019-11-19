@@ -14,7 +14,8 @@ source ~/.git-completion.bash
 
 
 export HISTTIMEFORMAT="%a %b %d %T %Z %Y %t"
-export HISTIGNORE="brew upgrade:brew cleanup:clear:df*:exit:logout:neofetch:pwd:vim:nnn:istats:open:vimtutor"
+export HISTCONTROL=ignoreboth:erasedups
+export HISTIGNORE='history:brew upgrade:brew cleanup:clear:df:exit:logout:neofetch:pwd:vim:nnn:istats:open:vimtutor:'
 
 
 alias matlabcmd="clear && /Applications/MATLAB_R2017a.app/bin/matlab -nojvm -nodisplay -nosplash"
