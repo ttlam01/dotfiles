@@ -122,11 +122,16 @@ au Filetype python set
 "set nobackup
 "set noswapfile
 " Uncomment the next lines to set up the backup/swap on vim
-set backup
-set backupdir=/private/tmp
-set dir=/private/tmp
-set writebackup
 
+set backup
+if !has('win32')
+    set backupdir=$TMPDIR//
+    set dir=$TMPDIR//
+else
+    set backupdir=$TEMP,$TMP
+    set dir=$TEMP,$TMP
+endif
+set writebackup
 set cursorline      " highlight current line"
 set wildmenu        " visual autocomplete for command menu"
 set lazyredraw      " redraw only when we need to"
@@ -217,6 +222,16 @@ let g:airline_theme= 'jellybeans'
 "let g:nerdtree_tabs_smart_startup_focus = 2 "Always focus on file window after startup
 "let g:NERDTreeChDirMode=2 "follow NERDTree's current directory
 
+" ----- netrw with NERDtree-like setup
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+"augroup ProjectDrawer
+"  autocmd!
+"  autocmd VimEnter * :Vexplore
+"augroup END
 
 " ----- scrooloose/syntastic settings -----
 let g:syntastic_error_symbol = '✘'
