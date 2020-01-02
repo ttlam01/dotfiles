@@ -35,7 +35,7 @@ Plugin 'jalvesaq/Nvim-R' "vim IDE for R
 
 
 if has('gui_running')
-    Plugin 'valloric/youcompleteme' "Code completion for macvim only
+    Plugin 'Valloric/YouCompleteMe' "Code completion for macvim only
 endif
 
 
@@ -161,6 +161,10 @@ if has("clipboard")
   endif
 endif
 
+if has("gui_running")
+    set lines=88 columns=144
+endif
+
 " ----- Plugin-Specific Settings --------------------------------------
 
 " ----- altercation/vim-colors-solarized settings -----
@@ -227,7 +231,7 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
-let g:netrw_winsize = 25
+let g:netrw_winsize = 20
 "augroup ProjectDrawer
 "  autocmd!
 "  autocmd VimEnter * :Vexplore
