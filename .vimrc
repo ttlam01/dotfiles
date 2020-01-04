@@ -162,7 +162,7 @@ if has("clipboard")
 endif
 
 if has("gui_running")
-    set lines=88 columns=144
+    set lines=57 columns=162
 endif
 
 " ----- Plugin-Specific Settings --------------------------------------

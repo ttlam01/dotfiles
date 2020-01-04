@@ -9,7 +9,8 @@ export PATH=$PATH:$HOME/.gem/ruby/2.3.0/bin
 export PATH=$PATH:$HOME/.rvm/bin
 
 #export EDITOR="/usr/local/bin/mate -w"
-export EDITOR="/Applications/MacVim.app/Contents/bin/mvim -g"
+#export EDITOR="/Applications/MacVim.app/Contents/bin/mvim -g"
+export EDITOR="/usr/local/bin/mvim"
 source ~/.git-completion.bash
 
 
@@ -22,7 +23,7 @@ alias matlabcmd="clear && /Applications/MATLAB_R2017a.app/bin/matlab -nojvm -nod
 alias help="man"
 #alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 #alias mvim="/Applications/MacVim.app/contents/MacOS/Vim -g -f"
-alias mvim="/Applications/MacVim.app/Contents/bin/mvim -g"
+#alias mvim="/Applications/MacVim.app/Contents/bin/mvim -g"
 alias workspace="cd $HOME/Workspace/"
 #alias mvim="open -a MacVim"
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
