@@ -162,7 +162,7 @@ if has("clipboard")
 endif
 
 if has("gui_running")
-    set lines=57 columns=162
+    set columns=164 fuoptions=maxvert
 endif
 
 " ----- Plugin-Specific Settings --------------------------------------

@@ -32,6 +32,12 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+export LDFLAGS="-L/usr/local/opt/openblas/lib"
+export CPPFLAGS="-I/usr/local/opt/openblas/include"
+export PKG_CONFIG_PATH="/usr/local/opt/openblas/lib/pkgconfig"
+
+#Sys.setlocale(category="LC_ALL", locale = "en_US.UTF-8")
+
 # fix the framework problem in python
 #function frameworkpython {
 #    if [[ ! -z "$VIRTUAL_ENV" ]]; then
