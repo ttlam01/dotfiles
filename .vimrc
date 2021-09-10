@@ -364,22 +364,3 @@ let g:vimtex_delim_toggle_mod_list = [
   \ ['\mleft', '\mright'],
   \]
 
-let g:vimtex_quickfix_latexlog = {
-            \ 'default' : 1,
-            \ 'fix_paths' : 0,
-            \ 'general' : 1,
-            \ 'references' : 1,
-            \ 'overfull' : 1,
-            \ 'underfull' : 1,
-            \ 'font' : 1,
-            \ 'packages' : {
-            \   'default' : 1,
-            \   'natbib' : 1,
-            \   'biblatex' : 1,
-            \   'babel' : 1,
-            \   'hyperref' : 1,
-            \   'scrreprt' : 1,
-            \   'fixltx2e' : 1,
-            \   'titlesec' : 1,
-            \ },
-            \}
