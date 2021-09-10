@@ -34,15 +34,16 @@ Plugin 'duff/vim-trailing-whitespace'
 Plugin 'jalvesaq/Nvim-R' "vim IDE for R
 
 
-if has('gui_running')
+if has('gui_running') && has('python3')
     Plugin 'Valloric/YouCompleteMe' "Code completion for macvim only
 endif
 
 
 " Snippets
-Plugin 'SirVer/ultisnips' " Track the engine.
-Plugin 'honza/vim-snippets' " Snippets are separated from the engine. Add this if you want them. To edit/customize snippets, open a tex file and type :UltiSnipsEdit
-
+if has('python3')
+    Plugin 'SirVer/ultisnips' " Track the engine.
+    Plugin 'honza/vim-snippets' " Snippets are separated from the engine. Add this if you want them. To edit/customize snippets, open a tex file and type :UltiSnipsEdit
+endif
 
 " ----- Working with Git ----------------------------------------------
 Plugin 'airblade/vim-gitgutter'
@@ -164,6 +165,25 @@ endif
 if has("gui_running")
     set columns=164 fuoptions=maxvert
 endif
+
+"====file is large from 1GB ====
+let g:LargeFile = 1024 * 1024 * 100
+augroup LargeFile
+    autocmd BufReadPre * let f=getfsize(expand("<afile>")) | if f > g:LargeFile || f == -2 | call LargeFile() | endif
+augroup END
+
+function LargeFile()
+" no syntax highlighting etc
+    set eventignore+=FileType
+" save memory when other file is viewed
+    setlocal bufhidden=unload
+" is read-only (write with :w new_filename)
+    setlocal buftype=nowrite
+" no undo possible
+    setlocal undolevels=-1
+" display message
+    autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . " MB, so some options are changed (see .vimrc for details)."
+endfunction
 
 " ----- Plugin-Specific Settings --------------------------------------
 
@@ -318,3 +338,48 @@ let g:UltiSnipsJumpBackwardTrigger="<s-TAB>"
 "-------vimtex settings-----------------
 let g:tex_flavor='latex' 
 let g:vimtex_view_method = 'skim'
+if !exists('g:ycm_semantic_triggers')
+    let g:ycm_semantic_triggers = {}
+endif
+au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
+
+let g:vimtex_quickfix_open_on_warning = 0
+let g:vimtex_quickfix_mode = 2
+
+let g:vimtex_delim_list = {'mods' : {}}
+let g:vimtex_delim_list.mods.name = [
+      \ ['\left', '\right'],
+      \ ['\mleft', '\mright'],
+      \ ['\bigl', '\bigr'],
+      \ ['\Bigl', '\Bigr'],
+      \ ['\biggl', '\biggr'],
+      \ ['\Biggl', '\Biggr'],
+      \ ['\big', '\big'],
+      \ ['\Big', '\Big'],
+      \ ['\bigg', '\bigg'],
+      \ ['\Bigg', '\Bigg'],
+      \]
+let g:vimtex_delim_toggle_mod_list = [
+  \ ['\left', '\right'],
+  \ ['\mleft', '\mright'],
+  \]
+
+let g:vimtex_quickfix_latexlog = {
+            \ 'default' : 1,
+            \ 'fix_paths' : 0,
+            \ 'general' : 1,
+            \ 'references' : 1,
+            \ 'overfull' : 1,
+            \ 'underfull' : 1,
+            \ 'font' : 1,
+            \ 'packages' : {
+            \   'default' : 1,
+            \   'natbib' : 1,
+            \   'biblatex' : 1,
+            \   'babel' : 1,
+            \   'hyperref' : 1,
+            \   'scrreprt' : 1,
+            \   'fixltx2e' : 1,
+            \   'titlesec' : 1,
+            \ },
+            \}
