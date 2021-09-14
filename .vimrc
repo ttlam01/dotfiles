@@ -45,6 +45,9 @@ if has('python3')
     Plugin 'honza/vim-snippets' " Snippets are separated from the engine. Add this if you want them. To edit/customize snippets, open a tex file and type :UltiSnipsEdit
 endif
 
+" Get YCM and Ultisnips work
+Plugin 'ervandew/supertab'
+
 " ----- Working with Git ----------------------------------------------
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
@@ -308,7 +311,7 @@ runtime! ftplugin/man.vim "man package distributed within vim
 "let g:ycm_semantic_completion_toggle = '<C-F>'
 let g:ycm_auto_trigger=0
 "press "\" and y or Y to enable or disable YCM.
-nnoremap <leader>y :let g:ycm_auto_trigger=1<CR>                " turn off YCM
+nnoremap <leader>Y :let g:ycm_auto_trigger=1<CR>                " turn off YCM
 nnoremap <leader>yy :let g:ycm_auto_trigger=0<CR>                " turn on YCM
 "" turn on completion in comments
 let g:ycm_complete_in_comments=1 
@@ -324,17 +327,20 @@ let g:ycm_min_num_of_chars_for_completion=1
 let g:ycm_cache_omnifunc=0
 "" complete syntax keywords
 let g:ycm_seed_identifiers_with_syntax=1
-let g:ycm_key_list_select_completion=[]
-let g:ycm_key_list_previous_completion=[]
+"let g:ycm_key_list_select_completion=[]
+"let g:ycm_key_list_previous_completion=[]
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
 
 " Ultisnips settings
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mySnippets"]
-let g:UltiSnipsExpandTrigger="<TAB>"
-let g:UltiSnipsJumpForwardTrigger="<TAB>"
-let g:UltiSnipsJumpBackwardTrigger="<s-TAB>"
-
-
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 "-------vimtex settings-----------------
 let g:tex_flavor='latex' 
 let g:vimtex_view_method = 'skim'
