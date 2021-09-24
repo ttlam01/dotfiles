@@ -322,17 +322,20 @@ let g:ycm_collect_identifiers_from_tags_files=1
 "" only show completion as a list instead of a sub-window
 set completeopt-=preview
 "" start completion from the first character
-let g:ycm_min_num_of_chars_for_completion=1
+let g:ycm_min_num_of_chars_for_completion=2
 "" don't cache completion items
 let g:ycm_cache_omnifunc=0
 "" complete syntax keywords
 let g:ycm_seed_identifiers_with_syntax=1
 "let g:ycm_key_list_select_completion=[]
 "let g:ycm_key_list_previous_completion=[]
+" setup key to stop completion
+"let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:SuperTabCrMapping=1
 
 
 " Ultisnips settings
@@ -340,7 +343,7 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mySnippets"]
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
-let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
 "-------vimtex settings-----------------
 let g:tex_flavor='latex' 
 let g:vimtex_view_method = 'skim'
