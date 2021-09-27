@@ -10,15 +10,16 @@ Plugin 'VundleVim/Vundle.vim'
 
 " ----- Making Vim look good ------------------------------------------
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
-Plugin 'morhetz/gruvbox'
+"Plugin 'tomasr/molokai'
+"Plugin 'morhetz/gruvbox'
 Plugin 'nanotech/jellybeans.vim'
-Plugin 'sjl/badwolf'
-Plugin 'jacoborus/tender'
-Plugin 'whatyouhide/vim-gotham'
+"Plugin 'sjl/badwolf'
+"Plugin 'jacoborus/tender'
+"Plugin 'whatyouhide/vim-gotham'
 "Plugin 'chriskempson/tomorrow-theme'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'ryanoasis/vim-devicons'
 "Plugin 'flazz/vim-colorschemes'
 
 " ----- Vim as a programmer's text editor -----------------------------
@@ -78,6 +79,8 @@ filetype plugin indent on
 " --- General settings ---
 set backspace=indent,eol,start
 set encoding=utf-8
+set fileencoding=utf-8
+set termencoding=utf-8
 
 " --- line number ---
 set ruler
@@ -153,8 +156,9 @@ set foldlevelstart=10   " start with fold level of 1
 
 " We need this for plugins like Syntastic and vim-gitgutter which put symbols
 " in the sign column.
-hi clear SignColumn
-
+"hi clear SignColumn
+"highlight! link SignColumn LineNr
+"highlight SignColumn guibg=Black ctermbg=Black
 
 " clipboard setting:  yank to clipboard
 if has("clipboard")
@@ -188,6 +192,7 @@ function LargeFile()
     autocmd VimEnter *  echo "The file is larger than " . (g:LargeFile / 1024 / 1024) . " MB, so some options are changed (see .vimrc for details)."
 endfunction
 
+
 " ----- Plugin-Specific Settings --------------------------------------
 
 " ----- altercation/vim-colors-solarized settings -----
@@ -207,8 +212,8 @@ let macvim_skip_colorscheme=1
 "let g:gruvbox_termcolors=256
 
 " Uncomment this if you want to use molokai scheme
-let g:molokai_original = 1
-let g:rehash256 = 1
+"let g:molokai_original = 1
+"let g:rehash256 = 1
 
 " Set the colorscheme
 "colorscheme gruvbox "gotham256
@@ -219,7 +224,9 @@ let g:rehash256 = 1
 " ----- bling/vim-airline settings -----
 " Always show statusbar
 set laststatus=2
-set guifont=Menlo\ for\ Powerline:h11
+"set guifont=Menlo\ for\ Powerline:h11
+"nerd font MesloLG font-meslo-lg-nerd-font can be installed via brew cask
+set guifont=MesloLGMDZ\ Nerd\ Font:h11
 
 " Fancy arrow symbols, requires a patched font
 " To install a patched font, run over to
@@ -234,10 +241,14 @@ let g:airline_detect_paste=1
 " Show airline for tabs too
 let g:airline#extensions#tabline#enabled = 1
 
+" Show buffer number in tabline
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
 " Use the solarized theme for the Airline status bar
 let g:airline_theme= 'jellybeans'
 "let g:airline_theme= 'solarized'
 "let g:airline_solarized_bg='dark'
+
 
 " ----- jistr/vim-nerdtree-tabs -----
 " Open/close NERDTree Tabs with \t
@@ -289,6 +300,12 @@ nmap <silent> <leader>b :TagbarToggle<CR>
 " ----- airblade/vim-gitgutter settings -----
 " In vim-airline, only display "hunks" if the diff is non-zero
 let g:airline#extensions#hunks#non_zero_only = 1
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '>'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '^'
+let g:gitgutter_sign_modified_removed = '<'
+highlight! link SignColumn LineNr
 
 
 " ----- Raimondi/delimitMate settings -----
@@ -372,4 +389,3 @@ let g:vimtex_delim_toggle_mod_list = [
   \ ['\left', '\right'],
   \ ['\mleft', '\mright'],
   \]
-
