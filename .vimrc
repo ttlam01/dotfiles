@@ -116,14 +116,14 @@ set cindent
 
 "au BufNewFile,BufRead *.py
 au Filetype python set
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-    \ set fileformat=unix
+    \ tabstop=4
+    \ softtabstop=4
+    \ shiftwidth=4
+    \ textwidth=79
+    \ expandtab
+    \ autoindent
+    \ smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+    \ fileformat=unix
 
 
 "set nobackup
@@ -226,7 +226,7 @@ let macvim_skip_colorscheme=1
 set laststatus=2
 "set guifont=Menlo\ for\ Powerline:h11
 "nerd font MesloLG font-meslo-lg-nerd-font can be installed via brew cask
-set guifont=MesloLGMDZ\ Nerd\ Font:h11
+set guifont=MesloLGMDZ\ Nerd\ Font:h13
 
 " Fancy arrow symbols, requires a patched font
 " To install a patched font, run over to

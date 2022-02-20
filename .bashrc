@@ -43,6 +43,16 @@ export LDFLAGS="-L/usr/local/opt/openblas/lib"
 export CPPFLAGS="-I/usr/local/opt/openblas/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openblas/lib/pkgconfig"
 
+#export CC=/usr/local/opt/llvm/bin/clang
+#export CXX=/usr/local/opt/llvm/bin/clang++
+#export LDFLAGS="-L/usr/local/opt/llvm/lib"
+#export CPPFLAGS="-I/usr/local/opt/llvm/include"
+
+#XCBASE=`xcrun --show-sdk-path`
+#export C_INCLUDE_PATH=$XCBASE/usr/include
+#export CPLUS_INCLUDE_PATH=$XCBASE/usr/include
+#export LIBRARY_PATH=$XCBASE/usr/lib
+
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
 #Sys.setlocale(category="LC_ALL", locale = "en_US.UTF-8")
