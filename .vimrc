@@ -25,14 +25,20 @@ Plugin 'ryanoasis/vim-devicons'
 " ----- Vim as a programmer's text editor -----------------------------
 "Plugin 'scrooloose/nerdtree'
 "Plugin 'jistr/vim-nerdtree-tabs'
+"Plugin 'ptzz/lf.vim'
+"Plugin 'voldikss/vim-floaterm'
 Plugin 'vim-syntastic/syntastic' "checking syntax
 Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
+Plugin 'ludovicchabant/vim-gutentags'
+"Plugin 'xolox/vim-easytags'
 Plugin 'majutsushi/tagbar'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-scripts/a.vim'
 Plugin 'duff/vim-trailing-whitespace'
 Plugin 'jalvesaq/Nvim-R' "vim IDE for R
+Plugin 'puremourning/vimspector'
+
+
 
 
 if has('gui_running') && has('python3')
@@ -159,6 +165,9 @@ set foldlevelstart=10   " start with fold level of 1
 "hi clear SignColumn
 "highlight! link SignColumn LineNr
 "highlight SignColumn guibg=Black ctermbg=Black
+"debugger split setting
+let g:termdebug_wide = 163
+"let g:termdebug_wide=
 
 " clipboard setting:  yank to clipboard
 if has("clipboard")
@@ -262,14 +271,26 @@ let g:airline_theme= 'jellybeans'
 
 " ----- netrw with NERDtree-like setup
 let g:netrw_banner = 0
-let g:netrw_liststyle = 3
+let g:netrw_liststyle = 0
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
+let g:netrw_keepdir = 0
+hi! link netrwMarkFile Search
+nmap ` : Lexplore<CR>
+
 "augroup ProjectDrawer
 "  autocmd!
 "  autocmd VimEnter * :Vexplore
 "augroup END
+"
+" ----- lf configuration ----
+"let g:lf_replace_netrw = 1
+"let g:lf_open_new_tab = 1
+"let g:lf_map_keys = 0
+"map <leader>f :Lf<CR>
+
+
 
 " ----- scrooloose/syntastic settings -----
 let g:syntastic_error_symbol = '✘'
@@ -284,17 +305,108 @@ augroup END
 " Where to look for tags files
 set tags=./tags;,~/.vimtags
 " Sensible defaults
-let g:easytags_events = ['BufReadPost', 'BufWritePost']
-let g:easytags_async = 1
-let g:easytags_dynamic_files = 2
-let g:easytags_resolve_links = 1
-let g:easytags_suppress_ctags_warning = 1
+"let g:easytags_events = ['BufReadPost', 'BufWritePost']
+"let g:easytags_async = 1
+"let g:easytags_dynamic_files = 2
+"let g:easytags_resolve_links = 1
+"let g:easytags_suppress_ctags_warning = 1
+" ----- 'ludovicchabant/vim-gutentags' -----
+set statusline+=%{gutentags#statusline()}
+let g:gutentags_project_root = ['Makefile']
+let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
+let g:gutentags_ctags_exclude = [
+      \ '*.git', '*.svg', '*.hg',
+      \ '*/tests/*',
+      \ 'build',
+      \ 'dist',
+      \ '*sites/*/files/*',
+      \ 'bin',
+      \ 'node_modules',
+      \ 'bower_components',
+      \ 'cache',
+      \ 'compiled',
+      \ 'docs',
+      \ 'example',
+      \ 'bundle',
+      \ 'vendor',
+      \ '*.md',
+      \ '*-lock.json',
+      \ '*.lock',
+      \ '*bundle*.js',
+      \ '*build*.js',
+      \ '.*rc*',
+      \ '*.json',
+      \ '*.min.*',
+      \ '*.map',
+      \ '*.bak',
+      \ '*.zip',
+      \ '*.pyc',
+      \ '*.class',
+      \ '*.sln',
+      \ '*.Master',
+      \ '*.csproj',
+      \ '*.tmp',
+      \ '*.csproj.user',
+      \ '*.cache',
+      \ '*.pdb',
+      \ 'tags*',
+      \ 'cscope.*',
+      \ '*.css',
+      \ '*.less',
+      \ '*.scss',
+      \ '*.exe', '*.dll',
+      \ '*.mp3', '*.ogg', '*.flac',
+      \ '*.swp', '*.swo',
+      \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
+      \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+      \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
+      \ ]
+let g:gutentags_ctags_extra_args = [
+      \ '--tag-relative=yes',
+      \ '--fields=+ailmnS',
+      \ '--c++-kinds=+p',
+      \ '--fields=+iaS',
+      \ '--extras=+qf',
+      \ '--language-force=C++',
+      \ ]
 
 " ----- majutsushi/tagbar settings -----
 " Open/close tagbar with \b
-nmap <silent> <leader>b :TagbarToggle<CR>
+nmap <silent> <leader>T :TagbarToggle<CR>
 " Uncomment to open tagbar automatically whenever possiblie
 "autocmd BufEnter * nested :call tagbar#autoopen(0)
+
+" ----- cscope settings -----
+"source ~/.vim/bundle/cscope_maps.vim
+set cscopetag
+
+" check cscope for definition of a symbol before checking ctags: set to 1
+" if you want the reverse search order.
+set csto=0
+
+" add any cscope database in current directory
+if filereadable("cscope.out")
+    cs add cscope.out  
+" else add the database pointed to by environment variable 
+elseif $CSCOPE_DB != ""
+    cs add $CSCOPE_DB
+endif
+
+" show msg when any other cscope db added
+set cscopeverbose  
+
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
+nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
 
 
 " ----- airblade/vim-gitgutter settings -----
@@ -389,3 +501,7 @@ let g:vimtex_delim_toggle_mod_list = [
   \ ['\left', '\right'],
   \ ['\mleft', '\mright'],
   \]
+
+" buffer settings
+" Fast switching buffers
+nnoremap <Leader>b :ls<CR>:b<Space>

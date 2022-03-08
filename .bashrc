@@ -40,13 +40,17 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 export LDFLAGS="-L/usr/local/opt/openblas/lib"
+export LDFLAGS="$LDFLAGS -L/usr/local/opt/llvm/lib"
+export LDFLAGS="$LDFLAGS -L//usr/local/Cellar/boost/1.76.0/lib"
 export CPPFLAGS="-I/usr/local/opt/openblas/include"
+export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/llvm/include"
+export CPPFLAGS="$CPPFLAGS -I/usr/local/Cellar/boost/1.76.0/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openblas/lib/pkgconfig"
 
 #export CC=/usr/local/opt/llvm/bin/clang
 #export CXX=/usr/local/opt/llvm/bin/clang++
-#export LDFLAGS="-L/usr/local/opt/llvm/lib"
 #export CPPFLAGS="-I/usr/local/opt/llvm/include"
+#export LDFLAGS="-L/usr/local/opt/llvm/lib"
 
 #XCBASE=`xcrun --show-sdk-path`
 #export C_INCLUDE_PATH=$XCBASE/usr/include
