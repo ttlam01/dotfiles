@@ -39,8 +39,6 @@ Plugin 'jalvesaq/Nvim-R' "vim IDE for R
 Plugin 'puremourning/vimspector'
 
 
-
-
 if has('gui_running') && has('python3')
     Plugin 'Valloric/YouCompleteMe' "Code completion for macvim only
 endif
@@ -120,6 +118,9 @@ set autoindent
 set smartindent
 set cindent
 
+" Fast switching buffers
+nnoremap <leader><TAB> :ls<CR>:b<Space>
+
 "au BufNewFile,BufRead *.py
 au Filetype python set
     \ tabstop=4
@@ -146,7 +147,7 @@ else
 endif
 set writebackup
 set cursorline      " highlight current line"
-set wildmenu        " visual autocomplete for command menu"
+set wildmenu wildoptions=pum         " visual autocomplete for command menu"
 set lazyredraw      " redraw only when we need to"
 
 set autochdir       " Set working directory to the current file
@@ -236,6 +237,7 @@ set laststatus=2
 "set guifont=Menlo\ for\ Powerline:h11
 "nerd font MesloLG font-meslo-lg-nerd-font can be installed via brew cask
 set guifont=MesloLGMDZ\ Nerd\ Font:h13
+"set guifont=Comic\ Mono:h13
 
 " Fancy arrow symbols, requires a patched font
 " To install a patched font, run over to
@@ -253,8 +255,8 @@ let g:airline#extensions#tabline#enabled = 1
 " Show buffer number in tabline
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
-" Use the solarized theme for the Airline status bar
 let g:airline_theme= 'jellybeans'
+" Use the solarized theme for the Airline status bar
 "let g:airline_theme= 'solarized'
 "let g:airline_solarized_bg='dark'
 
@@ -271,11 +273,12 @@ let g:airline_theme= 'jellybeans'
 
 " ----- netrw with NERDtree-like setup
 let g:netrw_banner = 0
-let g:netrw_liststyle = 0
-let g:netrw_browse_split = 4
+let g:netrw_liststyle = 2
+let g:netrw_browse_split =4
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
 let g:netrw_keepdir = 0
+let g:netrw_hide = 1
 hi! link netrwMarkFile Search
 nmap ` : Lexplore<CR>
 
@@ -398,6 +401,7 @@ endif
 
 " show msg when any other cscope db added
 set cscopeverbose  
+set cscoperelative
 
 nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
 nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
@@ -438,20 +442,48 @@ runtime! ftplugin/man.vim "man package distributed within vim
 "--------YCM settigs ----------------
 " Toggle YCM
 "let g:ycm_semantic_completion_toggle = '<C-F>'
+let g:ycm_disable_for_files_larger_than_kb = 1024*500
 let g:ycm_auto_trigger=0
-"press "\" and y or Y to enable or disable YCM.
-nnoremap <leader>Y :let g:ycm_auto_trigger=1<CR>                " turn off YCM
-nnoremap <leader>yy :let g:ycm_auto_trigger=0<CR>                " turn on YCM
+"Toggle YouCompleteMe on and off with ,yy
+"function Toggle_ycm()
+"    if g:ycm_show_diagnostics_ui == 0
+"        let g:ycm_auto_trigger = 1
+"        let g:ycm_show_diagnostics_ui = 1
+"        :YcmRestartServer
+"        :e
+"        :echo "YCM on"
+"    elseif g:ycm_show_diagnostics_ui == 1
+"        let g:ycm_auto_trigger = 0
+"        let g:ycm_show_diagnostics_ui = 0
+"        :YcmRestartServer
+"        :e
+"        :echo "YCM off"
+"    endif
+"endfunction
+"nnoremap  ,yy :call Toggle_ycm() <CR>
+"Toggle YouCompleteMe on and off with ,y
+function Toggle_ycm()
+    if g:ycm_auto_trigger == 0
+        let g:ycm_auto_trigger = 1
+        :echo "YCM on"
+    elseif g:ycm_auto_trigger == 1
+        let g:ycm_auto_trigger = 0
+        :echo "YCM off"
+    endif
+endfunction
+nnoremap  ,yy :call Toggle_ycm() <CR>
+
+
 "" turn on completion in comments
-let g:ycm_complete_in_comments=1 
+let g:ycm_complete_in_comments=0 
 "" load ycm conf by default
 let g:ycm_confirm_extra_conf=0
 "" turn on tag completion
-let g:ycm_collect_identifiers_from_tags_files=1
+"let g:ycm_collect_identifiers_from_tags_files=1
 "" only show completion as a list instead of a sub-window
 set completeopt-=preview
 "" start completion from the first character
-let g:ycm_min_num_of_chars_for_completion=2
+let g:ycm_min_num_of_chars_for_completion=3
 "" don't cache completion items
 let g:ycm_cache_omnifunc=0
 "" complete syntax keywords
@@ -469,17 +501,25 @@ let g:SuperTabCrMapping=1
 
 " Ultisnips settings
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "mySnippets"]
+"let g:UltiSnipsSnippetDirectories=["mySnippets", "UltiSnips"]
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/mySnippets', $HOME.'vim/bundle/vim-snippets/UltiSnips']
+"let g:UltiSnipsSnippetDirectories=["mySnippets"]
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
+
 "-------vimtex settings-----------------
+set grepprg="rg\ -nH\ $*"
 let g:tex_flavor='latex' 
 let g:vimtex_view_method = 'skim'
 if !exists('g:ycm_semantic_triggers')
     let g:ycm_semantic_triggers = {}
 endif
 au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
+let g:vimtex_complete_bib = {
+            \ 'recursive': 0,
+            \ 'simple': 1,
+            \}
 
 let g:vimtex_quickfix_open_on_warning = 0
 let g:vimtex_quickfix_mode = 2
@@ -502,6 +542,25 @@ let g:vimtex_delim_toggle_mod_list = [
   \ ['\mleft', '\mright'],
   \]
 
+let g:vimtex_include_search_enabled = 0
+let g:vimtex_syntax_custom_cmds = [
+            \{
+                \ 'name': 'href',
+                \ 'argspell': 0
+            \},
+            \{
+                \ 'name': 'fullcite',
+                \ 'argspell': 0
+            \},
+            \{
+                \ 'name': 'textcite',
+                \ 'argspell': 0
+            \},
+            \{
+                \ 'name': 'url',
+                \ 'argspell': 0
+            \},
+            \]
+""""""""""""""""""""""""""""""""""""""""""""""""""""
 " buffer settings
-" Fast switching buffers
-nnoremap <Leader>b :ls<CR>:b<Space>
+

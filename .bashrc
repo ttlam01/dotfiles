@@ -16,6 +16,8 @@ export PATH=$PATH:/usr/local/opt/lua@5.3/bin
 export EDITOR="/usr/local/bin/mvim"
 source ~/.git-completion.bash
 
+#[[ -f "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
 
 #QT5 path
 export QT_BASE=`brew info qt5 | grep Cellar | cut -d' ' -f1`
@@ -85,3 +87,7 @@ NNN_USE_EDITOR=1                                # use the $EDITOR when opening t
 NNN_SSHFS_OPTS="sshfs -o follow_symlinks"       # make sshfs follow symlinks on the remote
 NNN_COLORS="2136"                               # use a different color for each context
 NNN_TRASH=1                                     # trash (needs trash-cli) instead of delete
+
+#alias t="/usr/local/bin/todo.sh -d $HOME/.todo/.todo.cfg"
+#source /usr/local/Cellar/todo-txt/2.12.0/etc/bash_completion.d/todo_completion complete -F _todo todo
+
